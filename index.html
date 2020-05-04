@@ -7,6 +7,28 @@
     <title>Boolflix</title>
 </head>
 <body>
+    <div id="app">
+        <div class="search-area">
+            <input class="search-bar" type="text">
+            <button class="search-button">Cerca</button>
+        </div>
+        <div class="results">
+            <div class="display-results">
+
+            </div>
+        </div>
+    </div>
+    <!-- HANDLEBARS TEMPLATES -->
+    <script id="results-template" type="text/x-handlebars-template">
+        <div class="movie">
+            <ul class="movie-data">
+                <li class="movie-title">Titolo film: {{title}}</li>
+                <li class="movie-original-language">Lingua Originale: {{originalLanguage}}</li>
+                <li class="movie-original-title">Titolo Originale: {{originalTitle}}</li>
+                <li class="movie-rating">Voto: {{rating}}</li>
+            </ul>
+        </div>
+    </script>
     <!-- JS -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js'></script>

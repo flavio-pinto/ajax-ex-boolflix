@@ -3,3 +3,15 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    padding: 40px;
+}
+
+.search-area {
+    margin-bottom: 20px;
+}
+
+.movie {
+    margin-bottom: 20px;
+}
