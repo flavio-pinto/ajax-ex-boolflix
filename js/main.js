@@ -6,7 +6,6 @@ $(document).ready(function () {
     // Refs
     var searchBar = $('.search-area .search-bar');
     var searchButton = $('.search-area .search-button');
-    var resultsArea = $('.results .display-results');
 
     //Init Handlebars
     var source = $('#results-template').html();
@@ -17,54 +16,79 @@ $(document).ready(function () {
         var query = searchBar.val().trim();
 
         if(query !== ''){
-            $.ajax({
-                url: 'https://api.themoviedb.org/3/search/movie',
-                method: 'GET',
-                data: {
-                    api_key: 'a4ea792285866fc38f076bcbb9cdca74',
-                    language: 'it-IT',
-                    query: query
-                },
-                success: function(res){
-                    var searchResults = res.results;
-
-                    if(searchResults.length > 0) {
-                        printMovies(template, searchResults, resultsArea);
-                    } else {
-                        alert('Nessun film trovato');
-                        searchBar.select();
-                    }
-                },
-                error: function(){
-                    alert('Errore chiamata API');
-                }
-            });
+            apiSearch(query, template);
         } else {
             alert('Hai inserito un campo vuoto! Per favore, inserisci un valore per la ricerca');
             searchBar.focus();
         }
-
         searchBar.val('');
     });
 }); // <---- end document ready
 
+// Funzione api call
+function apiSearch(query, template) {
+    //Variables
+    var apiBasicUrl = 'https://api.themoviedb.org/3/search/';
+    var apiArrayUrls = [
+        {
+            type: 'movie',
+            url: apiBasicUrl + 'movie'
+        },
+        {
+            type: 'tv',
+            url: apiBasicUrl + 'tv'
+        }
+    ];
+
+    //References
+    var searchBar = $('.search-area .search-bar');
+    var resultsArea = $('.results .display-results');
+    resetContainer(resultsArea);
+
+    // Ciclo per chiamate ajax
+    for(var i = 0; i < apiArrayUrls.length; i++) {
+        var apiUrl = apiArrayUrls[i];
+        $.ajax({
+            url: apiUrl.url, 
+            method: 'GET',
+            data: {
+                api_key: 'a4ea792285866fc38f076bcbb9cdca74',
+                language: 'it-IT',
+                query: query
+            }, 
+            success: function(res) {                
+                if(res.results.length > 0) {
+                    printShows(apiUrl.type, template, res.results);
+                } else {
+                    resultsArea.append('Non ho trovato nessun risultato in ' + "'" + apiUrl.type + "'" + '<br>');
+                };
+            },
+            error: function() {
+                alert('Errore chiamata API');
+            }
+        });
+    };
+};
+
 // Funzione per stampare i risultati
-function printMovies(template, movies, container){
-    // Reset lista
-    resetContainer(container);
+function printShows(type, template, shows){
+    // Ref results list
+    var resultsArea = $('.results .display-results');
+    
     // Loop sugli elementi della lista
-    for(var i = 0; i < movies.length; i++){
-        var movie = movies[i];
+    for(var i = 0; i < shows.length; i++){
+        var show = shows[i];
         var context = {
-            title: movie.title,
-            originalLanguage: printFlag(movie.original_language),
-            originalTitle: movie.original_title,
-            rating: printStarsRating(movie.vote_average)
+            title: show.title || show.name,
+            originalLanguage: printFlag(show.original_language),
+            originalTitle: show.original_title || show.original_name,
+            rating: printStarsRating(show.vote_average),
+            type: type
         };
         var html = template(context);
-        container.append(html);
-    }
-}
+        resultsArea.append(html);
+    };
+};
 
 // Funzione di reset
 function resetContainer(element){
@@ -100,4 +124,5 @@ function printFlag(lang) {
     } else {
         return lang;
     }
-}
+};
+

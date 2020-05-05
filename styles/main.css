@@ -23,3 +23,7 @@ body {
 .fas.fa-star {
     color: #FFD700;
 }
+
+.cant-find-anything {
+    margin-bottom: 20px;
+}
