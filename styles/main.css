@@ -19,3 +19,7 @@ body {
 .flag {
     height: 10px;
 }
+
+.fas.fa-star {
+    color: #FFD700;
+}
