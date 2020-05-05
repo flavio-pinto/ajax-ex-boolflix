@@ -59,7 +59,7 @@ function printMovies(template, movies, container){
             title: movie.title,
             originalLanguage: movie.original_language,
             originalTitle: movie.original_title,
-            rating: movie.vote_average
+            rating: printStarsRating(movie.vote_average)
         };
         var html = template(context);
         container.append(html);
@@ -69,4 +69,21 @@ function printMovies(template, movies, container){
 // Funzione di reset
 function resetContainer(element){
     element.html('');
+}
+
+// Funzione stampa voto stelline
+function printStarsRating(val) {
+    var toStarsRating = Math.round(val / 2);
+    var starsHtml = '';
+    var fullStar = '<i class="fas fa-star"></i>';
+    var emptyStar = '<i class="far fa-star"></i>';
+
+    for(var i = 0; i < 5; i++) {
+        if(toStarsRating > i) {
+            starsHtml += fullStar;
+        } else {
+            starsHtml += emptyStar
+        };
+    }
+    return starsHtml;
 }
