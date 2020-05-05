@@ -22,10 +22,22 @@
     <script id="results-template" type="text/x-handlebars-template">
         <div class="movie">
             <ul class="movie-data">
-                <li class="movie-title">Titolo film: {{title}}</li>
-                <li class="movie-original-language">Lingua Originale: {{originalLanguage}}</li>
-                <li class="movie-original-title">Titolo Originale: {{originalTitle}}</li>
-                <li class="movie-rating">Voto: {{rating}}</li>
+                <li class="movie-title">
+                    <span>Titolo film: </span>
+                    <span>{{title}}</span>
+                </li>
+                <li class="movie-original-language">
+                    <span>Lingua Originale: </span>
+                    <span>{{originalLanguage}}</span>
+                </li>
+                <li class="movie-original-title">
+                    <span>Titolo Originale: </span>
+                    <span>{{originalTitle}}</span>
+                </li>
+                <li class="movie-rating">
+                    <span>Voto: </span>
+                    <span>{{rating}}</span>
+                </li>
             </ul>
         </div>
     </script>
