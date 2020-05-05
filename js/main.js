@@ -57,7 +57,7 @@ function printMovies(template, movies, container){
         var movie = movies[i];
         var context = {
             title: movie.title,
-            originalLanguage: movie.original_language,
+            originalLanguage: printFlag(movie.original_language),
             originalTitle: movie.original_title,
             rating: printStarsRating(movie.vote_average)
         };
@@ -73,7 +73,7 @@ function resetContainer(element){
 
 // Funzione stampa voto stelline
 function printStarsRating(val) {
-    var toStarsRating = Math.round(val / 2);
+    var toStarsRating = Math.ceil(val / 2);
     var starsHtml = '';
     var fullStar = '<i class="fas fa-star"></i>';
     var emptyStar = '<i class="far fa-star"></i>';
@@ -86,4 +86,18 @@ function printStarsRating(val) {
         };
     }
     return starsHtml;
+}
+
+// Funzione stampa bandiera al posto della lingua originale
+function printFlag(lang) {
+    var italyFlag = '<img class="flag" src="img/it.svg" alt="italy flag">';
+    var englishFlag = '<img class="flag" src="img/en.svg" alt="england flag">';
+
+    if(lang == 'it') {
+        return italyFlag;
+    } else if (lang == 'en') {
+        return englishFlag;
+    } else {
+        return lang;
+    }
 }

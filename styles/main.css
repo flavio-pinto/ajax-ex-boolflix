@@ -15,3 +15,7 @@ body {
 .movie {
     margin-bottom: 20px;
 }
+
+.flag {
+    height: 10px;
+}
