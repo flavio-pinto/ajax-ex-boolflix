@@ -22,6 +22,7 @@
     <!-- HANDLEBARS TEMPLATES -->
     <script id="results-template" type="text/x-handlebars-template">
         <div class="movie">
+            <img class="poster" src="{{poster}}" alt="poster image">
             <ul class="movie-data">
                 <li class="movie-title">
                     <span>Titolo: </span>
@@ -42,6 +43,9 @@
                 <li class="show-type">
                     <span>Tipo: </span>
                     <span>{{type}}</span>
+                </li>
+                <li class="overview">
+                    <span>{{overview}}</span>
                 </li>
             </ul>
         </div>

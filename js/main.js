@@ -17,7 +17,7 @@ $(document).ready(function () {
         if(query !== ''){
             apiSearch(query, template);
         } else {
-            emptyField();
+            emptyFieldError();
         }
         searchBar.val('');
     });
@@ -96,11 +96,13 @@ function printShows(type, template, shows){
         };
 
         var context = {
+            poster: 'https://image.tmdb.org/t/p/w342' + show.poster_path,
             title: title,
             originalLanguage: printFlag(show.original_language),
             originalTitle: originalTitle,
             rating: printStarsRating(show.vote_average),
-            type: type
+            type: type,
+            overview: show.overview
         };
         var html = template(context);
         resultsArea.append(html);
