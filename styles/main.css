@@ -6,14 +6,18 @@
 
 body {
     padding: 40px;
+    font-family: 'Lato', sans-serif;
+    background: #222222;
 }
 
 li {
     list-style: none;
 }
 
-li span:first-child {
-    font-weight: 700;
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .search-area {
@@ -22,8 +26,12 @@ li span:first-child {
 
 .movie {
     margin-bottom: 20px;
-    width: 342px;
+    flex-basis: 300px;
     position: relative;
+}
+
+.movie:hover .movie-data {
+    opacity: 1;
 }
 
 .flag {
@@ -42,7 +50,7 @@ li span:first-child {
     color: white;
     background: black;
     height: 100%;
-    width: 342px;
+    width: 100%;
     opacity: 0;
     transition: opacity 200ms;
 }
@@ -51,12 +59,19 @@ li span:first-child {
     margin-bottom: 5px;
 }
 
-.movie:hover .movie-data {
-    opacity: 1;
+.movie-data li span:first-child {
+    font-weight: 700;
+    margin-right: 5px;
+    color: red;
 }
+
 
 .display-results {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.poster {
+    width: 100%;
 }
