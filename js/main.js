@@ -14,12 +14,10 @@ $(document).ready(function () {
     // Search movie
     searchButton.click(function(){
         var query = searchBar.val().trim();
-
         if(query !== ''){
             apiSearch(query, template);
         } else {
-            alert('Hai inserito un campo vuoto! Per favore, inserisci un valore per la ricerca');
-            searchBar.focus();
+            emptyField();
         }
         searchBar.val('');
     });
@@ -28,9 +26,8 @@ $(document).ready(function () {
         var query = searchBar.val().trim();
         if((event.which == 13) && (query !== '')){
             apiSearch(query, template);
-        } else if (query == '') {
-            alert('Hai inserito un campo vuoto! Per favore, inserisci un valore per la ricerca');
-            searchBar.focus();
+        } else if ((event.which == 13) && (query == '')) {
+            emptyFieldError();
         };
     });
 }); // <---- end document ready
@@ -149,3 +146,8 @@ function printFlag(lang) {
     }
 };
 
+// Funzione alert campo vuoto + focus
+function emptyFieldError() {
+    alert('Hai inserito un campo vuoto! Per favore, inserisci un valore per la ricerca');
+    searchBar.focus();
+}
