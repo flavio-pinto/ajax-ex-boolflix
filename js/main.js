@@ -53,12 +53,9 @@ function apiSearch(query, template) {
     resetContainer(resultsArea);
 
     // Ciclo per chiamate ajax
-    for(var i = 0; i < apiArrayUrls.length; i++) {
-        var apiUrl = apiArrayUrls[i];
-        var apiType = apiArrayUrls[i].type;
-        
+    apiArrayUrls.forEach(function(element){
         $.ajax({
-            url: apiUrl.url, 
+            url: element.url, 
             method: 'GET',
             data: {
                 api_key: 'a4ea792285866fc38f076bcbb9cdca74',
@@ -67,7 +64,7 @@ function apiSearch(query, template) {
             }, 
             success: function(el) {                
                 if(el.results.length > 0) {
-                    printShows(apiType, template, el.results);
+                    printShows(element.type, template, el.results);
                 } else {
                     resultsArea.append('Non ho trovato nessun risultato in ' + "'" + apiUrl.type + "'" + '<br>');
                 };
@@ -76,7 +73,7 @@ function apiSearch(query, template) {
                 alert('Errore chiamata API');
             }
         });
-    };
+    });
 };
 
 // Funzione per stampare i risultati
