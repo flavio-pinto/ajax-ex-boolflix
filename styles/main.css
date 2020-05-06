@@ -8,12 +8,22 @@ body {
     padding: 40px;
 }
 
+li {
+    list-style: none;
+}
+
+li span:first-child {
+    font-weight: 700;
+}
+
 .search-area {
     margin-bottom: 20px;
 }
 
 .movie {
     margin-bottom: 20px;
+    width: 342px;
+    position: relative;
 }
 
 .flag {
@@ -22,4 +32,31 @@ body {
 
 .fas.fa-star {
     color: #FFD700;
+}
+
+.movie-data {
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    background: black;
+    height: 100%;
+    width: 342px;
+    opacity: 0;
+    transition: opacity 200ms;
+}
+
+.movie-data li {
+    margin-bottom: 5px;
+}
+
+.movie:hover .movie-data {
+    opacity: 1;
+}
+
+.display-results {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }

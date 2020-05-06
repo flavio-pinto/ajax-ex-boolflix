@@ -6,6 +6,7 @@ $(document).ready(function () {
     // Refs
     var searchBar = $('.search-area .search-bar');
     var searchButton = $('.search-area .search-button');
+    var poster = $('.poster');
 
     //Init Handlebars
     var source = $('#results-template').html();
@@ -30,7 +31,17 @@ $(document).ready(function () {
             emptyFieldError();
         };
     });
+
+    poster.hover(function() {
+        $(this).hide();
+    });
+
+
 }); // <---- end document ready
+
+/**********************
+ **FUNZIONI************
+ **********************/
 
 // Funzione api call
 function apiSearch(query, template) {
@@ -78,8 +89,6 @@ function apiSearch(query, template) {
 
 // Funzione per stampare i risultati
 function printShows(type, template, shows){
-    
-    
     // Ref results list
     var resultsArea = $('.results .display-results');
     
@@ -95,8 +104,14 @@ function printShows(type, template, shows){
             originalTitle = show.original_name;
         };
 
+        var posterPath = 'https://image.tmdb.org/t/p/w342' + show.poster_path;
+
+        if (show.poster_path === null){
+            posterPath = 'img/no-poster.png';
+        };
+
         var context = {
-            poster: 'https://image.tmdb.org/t/p/w342' + show.poster_path,
+            poster: posterPath,
             title: title,
             originalLanguage: printFlag(show.original_language),
             originalTitle: originalTitle,
