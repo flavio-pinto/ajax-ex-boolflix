@@ -48,6 +48,9 @@ function apiSearch(query, template) {
     // Ciclo per chiamate ajax
     for(var i = 0; i < apiArrayUrls.length; i++) {
         var apiUrl = apiArrayUrls[i];
+        var apiType = apiArrayUrls[i].type;
+        console.log(apiArrayUrls[i]);
+        
         $.ajax({
             url: apiUrl.url, 
             method: 'GET',
@@ -56,9 +59,10 @@ function apiSearch(query, template) {
                 language: 'it-IT',
                 query: query
             }, 
-            success: function(res) {                
-                if(res.results.length > 0) {
-                    printShows(apiUrl.type, template, res.results);
+            success: function(el) {                
+                if(el.results.length > 0) {
+                    printShows(apiType, template, el.results);
+                    // console.log(apiArrayUrls[i]);
                 } else {
                     resultsArea.append('Non ho trovato nessun risultato in ' + "'" + apiUrl.type + "'" + '<br>');
                 };
@@ -72,16 +76,27 @@ function apiSearch(query, template) {
 
 // Funzione per stampare i risultati
 function printShows(type, template, shows){
+    
+    
     // Ref results list
     var resultsArea = $('.results .display-results');
     
     // Loop sugli elementi della lista
     for(var i = 0; i < shows.length; i++){
         var show = shows[i];
+        var title, originalTitle;
+        if (type === 'movie'){
+            title = show.title;
+            originalTitle = show.original_title;
+        } else if (type === 'tv') {
+            title = show.name;
+            originalTitle = show.original_name;
+        };
+
         var context = {
-            title: show.title || show.name,
+            title: title,
             originalLanguage: printFlag(show.original_language),
-            originalTitle: show.original_title || show.original_name,
+            originalTitle: originalTitle,
             rating: printStarsRating(show.vote_average),
             type: type
         };
