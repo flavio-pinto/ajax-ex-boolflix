@@ -23,6 +23,16 @@ $(document).ready(function () {
         }
         searchBar.val('');
     });
+
+    searchBar.keyup(function(event) {
+        var query = searchBar.val().trim();
+        if((event.which == 13) && (query !== '')){
+            apiSearch(query, template);
+        } else if (query == '') {
+            alert('Hai inserito un campo vuoto! Per favore, inserisci un valore per la ricerca');
+            searchBar.focus();
+        };
+    });
 }); // <---- end document ready
 
 // Funzione api call
@@ -49,7 +59,6 @@ function apiSearch(query, template) {
     for(var i = 0; i < apiArrayUrls.length; i++) {
         var apiUrl = apiArrayUrls[i];
         var apiType = apiArrayUrls[i].type;
-        console.log(apiArrayUrls[i]);
         
         $.ajax({
             url: apiUrl.url, 
@@ -62,7 +71,6 @@ function apiSearch(query, template) {
             success: function(el) {                
                 if(el.results.length > 0) {
                     printShows(apiType, template, el.results);
-                    // console.log(apiArrayUrls[i]);
                 } else {
                     resultsArea.append('Non ho trovato nessun risultato in ' + "'" + apiUrl.type + "'" + '<br>');
                 };
