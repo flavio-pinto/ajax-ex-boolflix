@@ -6,13 +6,13 @@ $(document).ready(function () {
     // Refs
     var searchBar = $('.search-area .search-bar');
     var searchButton = $('.search-area .search-button');
-    var poster = $('.poster');
 
     //Init Handlebars
     var source = $('#results-template').html();
     var template = Handlebars.compile(source);
 
     // Search movie
+    // Evento click su pulsante cerca
     searchButton.click(function(){
         var query = searchBar.val().trim();
         if(query !== ''){
@@ -23,6 +23,7 @@ $(document).ready(function () {
         searchBar.val('');
     });
 
+    // Evento keyup pulsante invio nella barra di input
     searchBar.keyup(function(event) {
         var query = searchBar.val().trim();
         if((event.which == 13) && (query !== '')){
@@ -31,12 +32,6 @@ $(document).ready(function () {
             emptyFieldError();
         };
     });
-
-    poster.hover(function() {
-        $(this).hide();
-    });
-
-
 }); // <---- end document ready
 
 /**********************
@@ -59,7 +54,6 @@ function apiSearch(query, template) {
     ];
 
     //References
-    var searchBar = $('.search-area .search-bar');
     var resultsArea = $('.results .display-results');
     resetContainer(resultsArea);
 
@@ -77,7 +71,7 @@ function apiSearch(query, template) {
                 if(el.results.length > 0) {
                     printShows(element.type, template, el.results);
                 } else {
-                    resultsArea.append('Non ho trovato nessun risultato in ' + "'" + apiUrl.type + "'" + '<br>');
+                    alert('Non ho trovato nessun risultato in ' + "'" + element.type + "'");
                 };
             },
             error: function() {
