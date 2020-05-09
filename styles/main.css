@@ -10,18 +10,24 @@ body {
     padding: 40px;
 }
 
-.top-bar {
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.search-area {
+.navbar__search {
     margin-bottom: 20px;
 }
 
-.movie {
+.results__list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.show {
     position: relative;
     margin-bottom: 20px;
     flex-basis: 300px;
@@ -36,7 +42,7 @@ body {
     color: #FFD700;
 }
 
-.movie-data {
+.show__data {
     position: absolute;
     top: 0;
     left: 0;
@@ -49,28 +55,22 @@ body {
     transition: opacity 200ms;
 }
 
-.movie:hover .movie-data {
+.show:hover .show__data {
     opacity: 1;
 }
 
-.movie-data li {
+.show__data li {
     margin-bottom: 5px;
     list-style: none;
 }
 
-.movie-data li span:first-child {
+.show__data li span:first-child {
     margin-right: 5px;
     font-weight: 700;
     color: red;
 }
 
-.display-results {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.poster {
+.show__poster {
     width: 100%;
     height: 100%;
     object-fit: cover;

@@ -4,11 +4,11 @@
 
 $(document).ready(function () {
     // Refs
-    var searchBar = $('.search-area .search-bar');
-    var searchButton = $('.search-area .search-button');
+    var searchBar = $('.navbar__search__input');
+    var searchButton = $('.navbar__search__button');
 
     //Init Handlebars
-    var source = $('#results-template').html();
+    var source = $('#template__results').html();
     var template = Handlebars.compile(source);
 
     // Search movie
@@ -54,7 +54,7 @@ function apiSearch(query, template) {
     ];
 
     //References
-    var resultsArea = $('.results .display-results');
+    var resultsArea = $('.results__list');
     resetContainer(resultsArea);
 
     // Ciclo per chiamate ajax
@@ -84,7 +84,7 @@ function apiSearch(query, template) {
 // Funzione per stampare i risultati
 function printShows(type, template, shows){
     // Ref results list
-    var resultsArea = $('.results .display-results');
+    var resultsArea = $('.results__list');
     
     // Loop sugli elementi della lista
     for(var i = 0; i < shows.length; i++){

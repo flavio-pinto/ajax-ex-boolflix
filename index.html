@@ -10,47 +10,47 @@
 </head>
 <body>
     <div id="app">
-        <div class="top-bar">
-            <div class="boolfix-logo">
+        <div class="navbar">
+            <div class="navbar__logo">
                 <img src="img/boolflix-logo.png" alt="boolflix logo">
             </div>
-            <div class="search-area">
-                <input class="search-bar" type="text">
-                <button class="search-button">Cerca</button>
+            <div class="navbar__search">
+                <input class="navbar__search__input" type="text">
+                <button class="navbar__search__button">Cerca</button>
             </div>
         </div>
         <div class="results">
-            <div class="display-results">
+            <div class="results__list">
                 
             </div>
         </div>
     </div>
     <!-- HANDLEBARS TEMPLATES -->
-    <script id="results-template" type="text/x-handlebars-template">
-        <div class="movie">
-            <img class="poster" src="{{poster}}" alt="poster image">
-            <ul class="movie-data">
-                <li class="movie-title">
+    <script id="template__results" type="text/x-handlebars-template">
+        <div class="show">
+            <img class="show__poster" src="{{poster}}" alt="poster image">
+            <ul class="show__data">
+                <li class="show__data__title">
                     <span>Titolo: </span>
                     <span>{{title}}</span>
                 </li>
-                <li class="movie-original-language">
+                <li class="show__data__original-language">
                     <span>Lingua Originale: </span>
                     <span>{{{originalLanguage}}}</span>
                 </li>
-                <li class="movie-original-title">
+                <li class="show__data__original-title">
                     <span>Titolo Originale: </span>
                     <span>{{originalTitle}}</span>
                 </li>
-                <li class="movie-rating">
+                <li class="show__data__rating">
                     <span>Voto: </span>
                     <span>{{{rating}}}</span>
                 </li>
-                <li class="show-type">
+                <li class="show__data__type">
                     <span>Tipo: </span>
                     <span>{{type}}</span>
                 </li>
-                <li class="overview">
+                <li class="show__data__overview">
                     <span>Overview: </span>
                     <span>{{overview}}</span>
                 </li>
