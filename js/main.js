@@ -111,7 +111,7 @@ function printShows(type, template, shows){
             originalTitle: originalTitle,
             rating: printStarsRating(show.vote_average),
             type: type,
-            overview: show.overview.substr(0, 550) + '...'
+            overview: show.overview.substr(0, 250) + '...'
         };
         var html = template(context);
         resultsArea.append(html);
