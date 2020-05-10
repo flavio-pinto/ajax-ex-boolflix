@@ -24,7 +24,7 @@ $(document).ready(function () {
     });
 
     // Evento keyup pulsante invio nella barra di input
-    searchBar.keyup(function(event) {
+    searchBar.keypress(function(event) {
         var query = searchBar.val().trim();
         if((event.which == 13) && (query !== '')){
             apiSearch(query, template);

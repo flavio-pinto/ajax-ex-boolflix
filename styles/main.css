@@ -21,6 +21,20 @@ body {
     margin-bottom: 20px;
 }
 
+.navbar__search__input {
+    height: 50px;
+    width: 300px;
+    font-size: 30px;
+}
+
+.navbar__search__button {
+    height: 50px;
+    width: 100px;
+    font-size: 30px;
+    background: #dc1a28;
+    color: white;
+}
+
 .results__list {
     display: flex;
     justify-content: center;
@@ -77,6 +91,24 @@ body {
 
 /* TABLET RESPONSIVE */
 @media all and (max-width: 998px) {
+    .navbar {
+        display: block;
+    }
+
+    .navbar__logo,
+    .navbar__search {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .navbar__search__input {
+        width: 65%;
+    }
+
+    .navbar__search__button {
+        width: 30%;
+    }
+
     .results__list__show {
         margin: 0 10px 10px 0;
         width: calc(100% / 3 - 20px);
@@ -89,6 +121,24 @@ body {
 
 /* SMARTPHONE */
 @media all and (max-width: 767px) {
+    .navbar {
+        display: block;
+    }
+
+    .navbar__logo,
+    .navbar__search {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .navbar__search__input {
+        width: 65%;
+    }
+
+    .navbar__search__button {
+        width: 30%;
+    }
+
     .results__list__show {
         margin: 0 0 10px;
         min-width: 100%;
